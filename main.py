@@ -10,13 +10,13 @@ import torch.backends.cudnn as cudnn
 import torch.optim
 import torch.utils.data
 
-import models
 import video_transforms
-from opt import parser
+import datasets
+from opt import parser, models
 
 best_prec1 = 0
 
-def mian():
+def main():
     global args, best_prec1
     args = parser.parse_args()
 
