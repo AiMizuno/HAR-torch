@@ -13,8 +13,8 @@ parser.add_argument('data', metavar='DIR',
 parser.add_argument('--settings', metavar='DIR', default='./datasets/settings',
                     help='path to datset setting files')
 parser.add_argument('--dataset', '-d', default='ucf101',
-                    choices=["ucf101", "hmdb51"],
-                    help='dataset: ucf101 | hmdb51')
+                    choices=["ucf101", "hmdb51", "kinectics"],
+                    help='dataset: ucf101 | hmdb51 | kinetis')
 parser.add_argument('--modality', '-m', metavar='MODALITY', default='rgb',
                     choices=["rgb", "flow"],
                     help='modality: rgb | flow')
