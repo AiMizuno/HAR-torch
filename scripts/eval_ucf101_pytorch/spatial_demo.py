@@ -33,8 +33,10 @@ def softmax(x):
 
 def main():
 
-    model_path = '../../checkpoints/model_best.pth.tar'
-    data_dir = "~/UCF101/frames"
+    #need to modify
+    model_path = '../../pth/ucf101_s1_rgb_resnet152.pth.tar'
+    #need to modify
+    # data_dir = "~/temp/dataset/UCF-101-feature/"
     start_frame = 0
     num_categories = 101
 
@@ -49,7 +51,7 @@ def main():
     model_time = model_end_time - model_start_time
     print("Action recognition model is loaded in %4.4f seconds." % (model_time))
 
-    val_file = "./testlist01_with_labels.txt"
+    val_file = "./spatial_testlist01_with_labels.txt"
     f_val = open(val_file, "r")
     val_list = f_val.readlines()
     print("we got %d test videos" % len(val_list))

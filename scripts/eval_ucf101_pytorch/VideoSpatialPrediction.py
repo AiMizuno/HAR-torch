@@ -56,12 +56,13 @@ def VideoSpatialPrediction(
     rgb_flip = np.zeros(shape=dims, dtype=np.float64)
 
     for i in range(num_samples):
-        img_file = os.path.join(vid_name, 'image_{0:04d}.jpg'.format(i*step+1))
+        img_file = os.path.join(vid_name, 'image_{0:05d}.jpg'.format(i*step+1)) #need to change
         img = cv2.imread(img_file, cv2.IMREAD_UNCHANGED)
         img = cv2.resize(img, dims[1::-1])
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         rgb[:,:,:,i] = img
         rgb_flip[:,:,:,i] = img[:,::-1,:]
+        print ("done")
 
     # crop
     rgb_1 = rgb[:224, :224, :,:]
