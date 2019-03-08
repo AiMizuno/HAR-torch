@@ -17,6 +17,7 @@ import torch.utils.data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
+import parser
 import models
 from scripts import VideoSpatialPrediction
 from scripts import VideoTemporalPrediction
@@ -31,6 +32,7 @@ parser.add_argument('dataset', type=str, choices=['ucf101', 'hmdb51', 'kinetics'
 parser.add_argument('modality', type=str, choices=['RGB', 'Flow', 'RGBDiff'])
 parser.add_argument('test_list', type=str)
 parser.add_argument('weights', type=str)
+parser.add_argument('--path', type=str)
 parser.add_argument('--arch', type=str, default="resnet101")
 parser.add_argument('--save_scores', type=str, default=None)
 parser.add_argument('--test_segments', type=int, default=25)
@@ -55,19 +57,32 @@ def softmax(x):
     return z
 
 def main():
+    global args
+    args = parser.parse_args()
+
+    if args.dataset == 'ucf101':
+        num_categories = 101
+    elif args.dataset == 'hmdb51':
+        num_categories = 51
+    elif args.dataset == 'kinetics':
+        num_categories = 400
+    else:
+        raise ValueError('Unknown dataset '+args.dataset)
 
     #need to modify. hard code
-    model_path = './pth/ucf101_s1_rgb_resnet152.pth.tar'
+    # model_path = './pth/ucf101_s1_rgb_resnet152.pth.tar' #args.model_path
     #need to modify. hard code
-    data_dir = "~/temp/dataset/UCF-101-feature/"
+    # data_dir = "~/temp/dataset/UCF-101-feature/"
     start_frame = 0
-    num_categories = 101
+    # num_categories = 101
 
     model_start_time = time.time()
-    params = torch.load(model_path)
+    # params = torch.load(model_path)
+    params = torch.load(args.weights)
 
     #hard code
-    spatial_net = models.rgb_resnet152(pretrained=False, num_classes=101)
+    # spatial_net = models.rgb_resnet152(pretrained=False, num_classes=101) # args.model
+    spatital_net = models.__dict__[args.arch](pretrained = False, num_classes = num_categories)
     spatial_net.load_state_dict(params['state_dict'])
     spatial_net.cuda()
     spatial_net.eval()
@@ -76,8 +91,7 @@ def main():
     print("Action recognition model is loaded in %4.4f seconds." % (model_time))
 
     #need to modify. hard code
-    val_file = "./datasets/ucf101_splits/testlist01.txt"
-    f_val = open(val_file, "r")
+    f_val = open(args.test_list, "r")
     val_list = f_val.readlines()
     print("we got %d test videos" % len(val_list))
 
@@ -86,7 +100,8 @@ def main():
     result_list = []
     for line in val_list:
         line_info = line.split(" ")
-        clip_path = line_info[0]
+        clip_path = line_info.split("/")[0]
+        clip_path = os.path.join(args.path, clip_path)
         input_video_label = int(line_info[1]) - 1
 
         spatial_prediction = VideoSpatialPrediction(
