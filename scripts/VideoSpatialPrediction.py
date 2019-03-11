@@ -35,7 +35,7 @@ def VideoSpatialPrediction(
 
     if num_frames == 0:
         imglist = os.listdir(vid_name)
-        duration = len(imglist)
+        duration = len(imglist) / 3
         # print(duration)
     else:
         duration = num_frames

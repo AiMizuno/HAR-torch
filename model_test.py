@@ -17,7 +17,7 @@ import torch.utils.data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 
-import parser
+import argparse
 import models
 from scripts import VideoSpatialPrediction
 from scripts import VideoTemporalPrediction
@@ -82,7 +82,7 @@ def main():
 
     #hard code
     # spatial_net = models.rgb_resnet152(pretrained=False, num_classes=101) # args.model
-    spatital_net = models.__dict__[args.arch](pretrained = False, num_classes = num_categories)
+    spatial_net = models.__dict__[args.arch](pretrained = False, num_classes = num_categories)
     spatial_net.load_state_dict(params['state_dict'])
     spatial_net.cuda()
     spatial_net.eval()
@@ -100,9 +100,9 @@ def main():
     result_list = []
     for line in val_list:
         line_info = line.split(" ")
-        clip_path = line_info.split("/")[0]
+        clip_path = line_info[0]
         clip_path = os.path.join(args.path, clip_path)
-        input_video_label = int(line_info[1])# - 1 
+        input_video_label = int(line_info[2])# - 1 
 
         spatial_prediction = VideoSpatialPrediction(
                 clip_path,
