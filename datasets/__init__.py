@@ -1,3 +1,3 @@
-from .ucf101 import ucf101
+from .load_clip import load_clip
 
-__all__ = ('ucf101','hmdb51')
+__all__ = ('load_clip')

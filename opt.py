@@ -19,7 +19,7 @@ parser.add_argument('--modality', '-m', metavar='MODALITY', default='rgb',
                     choices=["rgb", "flow"],
                     help='modality: rgb | flow')
 parser.add_argument('--new_length', default=1, type=int,
-                    metavar='N', help='length of sampled video frames (default: 1)')
+                    metavar='N', help='length of sampled video frames (default: 1) RGB:1; Flow:5')
 parser.add_argument('--new_width', default=340, type=int,
                     metavar='N', help='resize width (default: 340)')
 parser.add_argument('--new_height', default=256, type=int,

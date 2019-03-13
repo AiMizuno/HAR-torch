@@ -127,7 +127,7 @@ def main():
     print(match_count)
     print(len(val_list))
     print("Accuracy is %4.4f" % (float(match_count)/len(val_list)))
-    np.save("{}_s1_{}_{}.npy".format(args.datasets, args.modality, args.arch), np.array(result_list))#hard code
+    np.save("{}_sX_{}_{}.npy".format(args.datasets, args.modality, args.arch), np.array(result_list))#hard code
 
 if __name__ == "__main__":
     main()

@@ -16,7 +16,7 @@ def find_classes(dir):
 def make_dataset(root, source):
 
     if not os.path.exists(source):
-        print("Setting file %s for ucf101 dataset doesn't exist." % (source))
+        print("Setting file %s for dataset doesn't exist." % (source))
         sys.exit()
     else:
         clips = []
@@ -24,7 +24,8 @@ def make_dataset(root, source):
             data = split_f.readlines()
             for line in data:
                 line_info = line.split()
-                clip_path = os.path.join(root, line_info[0])
+                # clip_path = os.path.join(root, line_info[0])
+                clip_path = line_info[0]
                 duration = int(line_info[1])
                 target = int(line_info[2])
                 item = (clip_path, duration, target)
@@ -93,7 +94,7 @@ def ReadSegmentFlow(path, offsets, new_height, new_width, new_length, is_color, 
     return clip_input
 
 
-class ucf101(data.Dataset):
+class load_clip(data.Dataset):
 
     def __init__(self,
                  root,

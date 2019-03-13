@@ -20,6 +20,15 @@ def main():
     global args, best_prec1
     args = parser.parse_args()
 
+    if args.dataset == 'ucf101':
+        num_class = 101
+    elif args.dataset == 'hmdb51':
+        num_class = 51
+    elif args.dataset == 'kinetics':
+        num_class = 400
+    else:
+        raise ValueError('Unknown dataset '+args.dataset)
+
     #create model
     print("Building model ... ")
     model = build_model()
@@ -40,11 +49,13 @@ def main():
 
     # Data transforming
     if args.modality == "rgb":
+        args.new_length = 1
         is_color = True
         scale_ratios = [1.0, 0.875, 0.75, 0.66]
         clip_mean = [0.485, 0.456, 0.406] * args.new_length
         clip_std = [0.229, 0.224, 0.225] * args.new_length
     elif args.modality == "flow":
+        args.new_length = 5
         is_color = False
         scale_ratios = [1.0, 0.875, 0.75]
         clip_mean = [0.5, 0.5] * args.new_length
@@ -72,31 +83,31 @@ def main():
 
 
     # data loading
-    train_setting_file = "train_%s_split%d.txt" % (args.modality, args.split)
+    train_setting_file = "%s_train_%s_split%d.txt" % (args.dataset, args.modality, args.split)
     train_split_file = os.path.join(args.settings, args.dataset, train_setting_file)
-    val_setting_file = "val_%s_split%d.txt" % (args.modality, args.split)
+    val_setting_file = "%s_val_%s_split%d.txt" % (args.dataset, args.modality, args.split)
     val_split_file = os.path.join(args.settings, args.dataset, val_setting_file)
     if not os.path.exists(train_split_file) or not os.path.exists(val_split_file):
         print("No split file exists in %s directory. Preprocess the dataset first" % (args.settings))
 
-    train_dataset = datasets.__dict__[args.dataset](root=args.data,
-                                                    source=train_split_file,
-                                                    phase="train",
-                                                    modality=args.modality,
-                                                    is_color=is_color,
-                                                    new_length=args.new_length,
-                                                    new_width=args.new_width,
-                                                    new_height=args.new_height,
-                                                    video_transform=train_transform)
-    val_dataset = datasets.__dict__[args.dataset](root=args.data,
-                                                  source=val_split_file,
-                                                  phase="val",
-                                                  modality=args.modality,
-                                                  is_color=is_color,
-                                                  new_length=args.new_length,
-                                                  new_width=args.new_width,
-                                                  new_height=args.new_height,
-                                                  video_transform=val_transform)
+    train_dataset = datasets.load_clip(root=args.data,
+                                            source=train_split_file,
+                                            phase="train",
+                                            modality=args.modality,
+                                            is_color=is_color,
+                                            new_length=args.new_length,
+                                            new_width=args.new_width,
+                                            new_height=args.new_height,
+                                            video_transform=train_transform)
+    val_dataset = datasets.load_clip(root=args.data,
+                                            source=val_split_file,
+                                            phase="val",
+                                            modality=args.modality,
+                                            is_color=is_color,
+                                            new_length=args.new_length,
+                                            new_width=args.new_width,
+                                            new_height=args.new_height,
+                                            video_transform=val_transform)
                                         
     print('{} samples found, {} train samples and {} test samples.'.format(len(val_dataset)+len(train_dataset),len(train_dataset),len(val_dataset)))
 
