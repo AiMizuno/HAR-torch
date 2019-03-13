@@ -240,8 +240,9 @@ def validate(val_loader, model, criterion):
 
 def build_model():
 
-    model = models.__dict__[args.arch](pretrained =True, num_classes=101)
-    model = torch.nn.DataParallel(model).cuda()
+    model = models.__dict__[args.arch](pretrained =True, num_classes=101).cuda()
+    # model = torch.nn.DataParallel(model).cuda()
+    # model = model.cuda()
     return model
 
 def save_checkpoint(state, is_best, filename, resume_path):
