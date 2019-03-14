@@ -7,7 +7,7 @@ import numpy as np
 import torch.utils.model_zoo as model_zoo
 from .se_module import SELayer
 
-__all__ = ['ResNet', 'flow_seresnet18', 'flow_seresnet34', 'flow_seresnet50', 'flow_seresnet50_aux', 'flow_seresnet101',
+__all__ = ['ResNet', 'flow_seresnet50', 'flow_seresnet50_aux', 'flow_seresnet101',
            'flow_seresnet152']
 
 

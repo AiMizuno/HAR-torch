@@ -6,7 +6,7 @@ import torch.utils.model_zoo as model_zoo
 from .se_module import SELayer
 
 
-__all__ = ['ResNet', 'rgb_seresnet18', 'rgb_seresnet34', 'rgb_seresnet50', 'rgb_seresnet50_aux', 'rgb_seresnet101',
+__all__ = ['ResNet', 'rgb_seresnet50', 'rgb_seresnet50_aux', 'rgb_seresnet101',
            'rgb_seresnet152']
 
 

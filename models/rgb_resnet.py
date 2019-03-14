@@ -4,7 +4,7 @@ import math
 import torch.utils.model_zoo as model_zoo
 
 
-__all__ = ['ResNet', 'rgb_resnet18', 'rgb_resnet34', 'rgb_resnet50', 'rgb_resnet50_aux', 'rgb_resnet101',
+__all__ = ['ResNet', 'rgb_resnet50', 'rgb_resnet50_aux', 'rgb_resnet101',
            'rgb_resnet152']
 
 

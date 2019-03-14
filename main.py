@@ -83,9 +83,9 @@ def main():
 
 
     # data loading
-    train_setting_file = "%s_train_%s_split%d.txt" % (args.dataset, args.modality, args.split)
+    train_setting_file = "%s_%s_train_split_%d.txt" % (args.dataset, args.modality, args.split)
     train_split_file = os.path.join(args.settings, args.dataset, train_setting_file)
-    val_setting_file = "%s_val_%s_split%d.txt" % (args.dataset, args.modality, args.split)
+    val_setting_file = "%s_%s_val_split_%d.txt" % (args.dataset, args.modality, args.split)
     val_split_file = os.path.join(args.settings, args.dataset, val_setting_file)
     if not os.path.exists(train_split_file) or not os.path.exists(val_split_file):
         print("No split file exists in %s directory. Preprocess the dataset first" % (args.settings))
@@ -258,7 +258,7 @@ def build_model():
 
 def save_checkpoint(state, is_best, filename, resume_path):
     cur_path = os.path.join(resume_path, filename)
-    best_path = os.path.join(resume_path, 'model_best.pth.tar')
+    best_path = os.path.join(resume_path, '{}_{}_{}_split{}.pth.tar'.format(args.dataset, args.modality, args.arch, args.split))#hard code
     torch.save(state, cur_path)
     if is_best:
         shutil.copyfile(cur_path, best_path)

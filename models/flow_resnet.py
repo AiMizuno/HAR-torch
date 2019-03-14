@@ -6,7 +6,7 @@ import numpy as np
 
 import torch.utils.model_zoo as model_zoo
 
-__all__ = ['ResNet', 'flow_resnet18', 'flow_resnet34', 'flow_resnet50', 'flow_resnet50_aux', 'flow_resnet101',
+__all__ = ['ResNet', 'flow_resnet50', 'flow_resnet50_aux', 'flow_resnet101',
            'flow_resnet152']
 
 
