@@ -1,2 +1,2 @@
-from VideoSpatialPrediction import *
-from VideoTemporalPrediction import *
+from .VideoSpatialPrediction import *
+from .VideoTemporalPrediction import *

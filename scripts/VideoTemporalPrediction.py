@@ -21,7 +21,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
 
-sys.path.insert(0, "../../")
+sys.path.insert(0, "../")
 import video_transforms
 
 def VideoTemporalPrediction(
