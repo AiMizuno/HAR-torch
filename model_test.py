@@ -32,7 +32,6 @@ parser.add_argument('dataset', type=str, choices=['ucf101', 'hmdb51', 'kinetics'
 parser.add_argument('modality', type=str, choices=['RGB', 'Flow', 'RGBDiff'])
 parser.add_argument('test_list', type=str) # ce shi lu jing
 parser.add_argument('weights', type=str)#.pth
-parser.add_argument('--path', type=str)# shi pin lu jing
 parser.add_argument('--arch', type=str, default="resnet101")
 parser.add_argument('--save_scores', type=str, default=None)
 parser.add_argument('--test_segments', type=int, default=25)
@@ -93,7 +92,6 @@ def main():
     for line in val_list:
         line_info = line.split(" ")
         clip_path = line_info[0]
-        # clip_path = os.path.join(args.path, clip_path)
         input_video_label = int(line_info[2])# - 1 
 
         if args.modality == "RGB":
