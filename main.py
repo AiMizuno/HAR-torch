@@ -55,7 +55,7 @@ def main():
         clip_mean = [0.485, 0.456, 0.406] * args.new_length
         clip_std = [0.229, 0.224, 0.225] * args.new_length
     elif args.modality == "flow":
-        args.new_length = 5
+        args.new_length = 10
         is_color = False
         scale_ratios = [1.0, 0.875, 0.75]
         clip_mean = [0.5, 0.5] * args.new_length
