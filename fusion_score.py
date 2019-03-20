@@ -26,7 +26,7 @@ match_count = 0
 line_id = 0
 for line in val_list:
     line_info = line.split(" ")
-    label = int(line_info[2])
+    input_video_label = int(line_info[2])
     pred_index = np.argmax((score_weights[0] * score_npz_files[0][line_id] + score_weights[1] * score_npz_files[1][line_id]) / float(score_weights[0] + score_weights[1]))
 
     if pred_index == input_video_label:
