@@ -19,6 +19,7 @@ import torchvision.datasets as datasets
 
 import argparse
 import models
+import video_transforms
 from scripts import VideoSpatialPrediction
 from scripts import VideoTemporalPrediction
 
