@@ -1,4 +1,6 @@
-from torch import nn
+import torch
+import torch.nn as nn
+import math
 
 class ChannelAttention(nn.Module):
     def __init__(self, in_planes, ratio=16):

@@ -6,7 +6,7 @@ import torch.utils.model_zoo as model_zoo
 from .cbam_module import ChannelAttention, SpatialAttention
 
 
-__all__ = ['cbamResNet', 'rgb_cbamresnet50', 'rgb_cbamresnet50_aux', 'rgb_cbamresnet101',
+__all__ = ['ResNet', 'rgb_cbamresnet50', 'rgb_cbamresnet50_aux', 'rgb_cbamresnet101',
            'rgb_cbamresnet152']
 
 

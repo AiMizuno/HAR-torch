@@ -31,7 +31,7 @@ def main():
 
     #create model
     print("Building model ... ")
-    model = build_model()
+    model = build_model(num_class)
     print("Model %s is loaded. " % (args.modality + "_" + args.arch))
 
     # define loss function (criterion) and optimizer
@@ -249,7 +249,7 @@ def validate(val_loader, model, criterion):
     return top1.avg                       
 
 
-def build_model():
+def build_model(num_class):
 
     model = models.__dict__[args.arch](pretrained =True, num_classes=num_class).cuda()
     # model = torch.nn.DataParallel(model).cuda()
