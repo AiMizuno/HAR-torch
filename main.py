@@ -251,7 +251,7 @@ def validate(val_loader, model, criterion):
 
 def build_model():
 
-    model = models.__dict__[args.arch](pretrained =True, num_classes=101).cuda()
+    model = models.__dict__[args.arch](pretrained =True, num_classes=num_class).cuda()
     # model = torch.nn.DataParallel(model).cuda()
     # model = model.cuda()
     return model
