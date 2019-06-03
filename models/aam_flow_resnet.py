@@ -7,8 +7,8 @@ import numpy as np
 import torch.utils.model_zoo as model_zoo
 from .aam_module import ChannelAttention, SpatialAttention, ClassificationAttention
 
-__all__ = ['ResNet', 'flow_cbamresnet50', 'flow_cbamresnet50_aux', 'flow_cbamresnet101',
-           'flow_cbamresnet152']
+__all__ = ['ResNet', 'flow_aamresnet50', 'flow_aamresnet50_aux', 'flow_aamresnet101',
+           'flow_aamresnet152']
 
 
 model_urls = {
@@ -206,7 +206,7 @@ def change_key_names(old_params, in_channels):
     
     return new_params
 
-def flow_cbamresnet18(pretrained=False, **kwargs):
+def flow_aamresnet18(pretrained=False, **kwargs):
     """Constructs a ResNet-18 model.
 
     Args:
@@ -229,7 +229,7 @@ def flow_cbamresnet18(pretrained=False, **kwargs):
 
     return model
 
-def flow_cbamresnet34(pretrained=False, **kwargs):
+def flow_aamresnet34(pretrained=False, **kwargs):
     """Constructs a ResNet-34 model.
 
     Args:
@@ -240,7 +240,7 @@ def flow_cbamresnet34(pretrained=False, **kwargs):
         model.load_state_dict(model_zoo.load_url(model_urls['resnet34']))
     return model
 
-def flow_cbamresnet50(pretrained=False, **kwargs):
+def flow_aamresnet50(pretrained=False, **kwargs):
     """Constructs a ResNet-50 model.
 
     Args:
@@ -264,7 +264,7 @@ def flow_cbamresnet50(pretrained=False, **kwargs):
 
     return model
 
-def flow_cbamresnet50_aux(pretrained=False, **kwargs):
+def flow_aamresnet50_aux(pretrained=False, **kwargs):
     """Constructs a ResNet-50 model.
 
     Args:
@@ -298,7 +298,7 @@ def flow_cbamresnet50_aux(pretrained=False, **kwargs):
 
     return model
 
-def flow_cbamresnet101(pretrained=False, **kwargs):
+def flow_aamresnet101(pretrained=False, **kwargs):
     """Constructs a ResNet-101 model.
 
     Args:
@@ -309,7 +309,7 @@ def flow_cbamresnet101(pretrained=False, **kwargs):
         model.load_state_dict(model_zoo.load_url(model_urls['resnet101']))
     return model
 
-def flow_cbamresnet152(pretrained=False, **kwargs):
+def flow_aamresnet152(pretrained=False, **kwargs):
     """Constructs a ResNet-152 model.
 
     Args:
